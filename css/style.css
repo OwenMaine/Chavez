@@ -1,0 +1,1277 @@
+/* ============================
+   TABLE OF CONTENTS
+   1.  Global & Root Styles
+   2.  Utility Classes
+   3.  Header & Navigation
+   4.  Hero Section
+   5.  Section Styling
+   6.  Service Cards
+   7.  Gallery
+   8.  Testimonials (Swiper)
+   9.  CTA Section
+   10. Footer
+   11. Lightbox
+   12. Back to Top Button
+   13. Responsive Media Queries
+============================= */
+
+/* 1. GLOBAL & ROOT STYLES
+----------------------------- */
+:root {
+    /* New Color Palette */
+    --primary-color: #6366F1;     /* Indigo */
+    --secondary-color: #A726A9;   /* Dark Neon Purple */
+    --dark-color: #0D1117;        /* Blue-Black */
+    --medium-dark-color: #344054; /* Dark Slate for Text */
+    --light-color: #F9FAFB;        /* Light Cool Gray */
+    --white-color: #ffffff;
+    
+    /* Fonts and other variables remain the same */
+    --font-family-heading: 'Montserrat', sans-serif;
+    --font-family-body: 'Open Sans', sans-serif;
+    --container-width: 1140px;
+    --transition-speed: 0.3s;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family-body);
+    line-height: 1.6;
+    color: var(--medium-dark-color);
+    background: var(--white-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+    color: var(--dark-color);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* 2. UTILITY CLASSES
+----------------------------- */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section {
+    padding: 5rem 0;
+}
+
+.bg-light {
+    background: var(--light-color);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-tag {
+    display: inline-block;
+    color: var(--secondary-color);
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid-2-cols {
+    grid-template-columns: 1fr;
+}
+
+.grid-3-cols {
+    grid-template-columns: 1fr;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn-primary:hover {
+    background: #4338CA; /* Darker Indigo */
+    color: var(--white-color);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* 3. HEADER & NAVIGATION
+----------------------------- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    padding: 1rem 0;
+    transition: background-color var(--transition-speed) ease, padding var(--transition-speed) ease;
+}
+
+.main-header.scrolled {
+    background: rgba(13, 17, 23, 0.85); /* Updated to blue-black */
+    backdrop-filter: blur(5px);
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+    color: var(--white-color);
+    font-weight: 700;
+}
+
+.navbar-logo strong {
+    color: var(--primary-color); /* Switched from secondary for better contrast on dark bg */
+}
+
+.navbar-list {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navbar-link {
+    color: var(--white-color);
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: width var(--transition-speed) ease;
+}
+
+.navbar-link:hover::after,
+.navbar-link.active::after {
+    width: 100%;
+}
+
+.navbar-btn {
+    display: none; /* Hidden on mobile */
+}
+
+.navbar-toggle {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--white-color);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.navbar-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--dark-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-menu.active {
+    display: flex;
+}
+
+.navbar-menu .navbar-list {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+}
+
+.navbar-menu .navbar-link {
+    font-size: 1.5rem;
+}
+
+/* 4. HERO SECTION (NEW SPLIT-SCREEN)
+----------------------------- */
+.hero-split {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+}
+
+.hero-split-content {
+    width: 50%;
+    background: var(--dark-color);
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.hero-content-inner {
+    max-width: 500px;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    color: var(--white-color);
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.hero-split-visuals {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slider {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* Ken Burns Effect */
+    animation: kenburns 20s ease-out infinite;
+}
+
+/* Different animation start points for variety */
+.hero-slide:nth-child(2) { animation-name: kenburns-alt; }
+
+@keyframes kenburns {
+    0% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes kenburns-alt {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 17, 23, 0.25); /* Lighter overlay for visuals */
+    z-index: 2;
+}
+
+/* Responsive adjustments for the new hero */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-split {
+        flex-direction: column;
+        height: auto;
+    }
+    .hero-split-content,
+    .hero-split-visuals {
+        width: 100%;
+    }
+    .hero-split-visuals {
+        min-height: 300px;
+        order: -1; /* Puts the image on top */
+    }
+    .hero-split-content {
+        padding: 4rem 1.5rem;
+        text-align: center;
+    }
+    .hero-content-inner {
+        max-width: none;
+    }
+}
+
+/* 5. ABOUT PREVIEW SECTION STYLING
+----------------------------- */
+.about-preview-image img {
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.about-preview-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* 6. SERVICE CARDS
+----------------------------- */
+.services-grid {
+    margin-bottom: 2.5rem;
+}
+
+.service-card {
+    background: var(--white-color);
+    padding: 2.5rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2); /* Indigo shadow */
+}
+
+.service-card-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 7. GALLERY
+----------------------------- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    transition: transform var(--transition-speed) ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(99, 102, 241, 0.8); /* Indigo overlay */
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+}
+
+.gallery-item-overlay span {
+    font-family: var(--font-family-heading);
+    font-size: 1.2rem;
+}
+
+/* 8. TESTIMONIALS (SWIPER)
+----------------------------- */
+.testimonials-slider {
+    padding-bottom: 3rem; /* Space for pagination */
+}
+
+.testimonial-card {
+    background: var(--white-color);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin: 0 1rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--medium-dark-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.testimonial-text::before {
+    content: '\f10d'; /* FontAwesome quote-left */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    opacity: 0.5;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.testimonial-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial-author strong {
+    display: block;
+    color: var(--dark-color);
+}
+
+.testimonial-author span {
+    font-size: 0.9rem;
+    color: var(--medium-dark-color);
+}
+
+.swiper-pagination-bullet {
+    background: var(--primary-color);
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--secondary-color);
+    opacity: 1;
+}
+
+/* 9. CTA SECTION
+----------------------------- */
+.cta {
+    background: var(--primary-color);
+    color: var(--white-color);
+}
+
+.cta .section-title, .cta p {
+    color: var(--white-color);
+}
+
+.cta .btn-primary {
+    background: var(--secondary-color);
+    color: var(--white-color);
+}
+
+.cta .btn-primary:hover {
+    background: var(--white-color);
+    color: var(--secondary-color);
+}
+
+/* 10. FOOTER
+----------------------------- */
+.main-footer {
+    background: var(--dark-color);
+    color: var(--light-color);
+    padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-column h4 {
+    color: var(--white-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-column p, .footer-column li {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+}
+
+.footer-column ul li a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-column i {
+    color: var(--primary-color); /* Switched to Primary for consistency */
+    margin-right: 0.5rem;
+}
+
+.footer-socials {
+    margin-top: 1rem;
+}
+
+.footer-socials a {
+    color: var(--white-color);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer-socials a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid var(--medium-dark-color);
+    padding-top: 2rem;
+}
+
+/* 11. LIGHTBOX (REVISED)
+----------------------------- */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(13, 17, 23, 0.95);
+    padding: 2rem;
+}
+
+.lightbox-container {
+    position: relative;
+    background: var(--white-color);
+    margin: auto;
+    width: 90%;
+    max-width: 900px;
+    animation: zoom 0.4s ease-out;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+.lightbox-content {
+    width: 100%;
+    display: block;
+}
+
+.lightbox-details {
+    padding: 1.5rem 2rem;
+    color: var(--medium-dark-color);
+}
+
+#lightbox-title {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+#lightbox-description {
+    line-height: 1.6;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: var(--white-color);
+    background: rgba(13, 17, 23, 0.5);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    transition: all 0.3s;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    background: var(--primary-color);
+    color: var(--white-color);
+    transform: rotate(90deg);
+}
+
+/* 12. BACK TO TOP BUTTON
+----------------------------- */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 1.2rem;
+    z-index: 999;
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+}
+
+.back-to-top.show {
+    display: block;
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    background: var(--secondary-color);
+    color: var(--white-color);
+    transform: translateY(-5px);
+}
+
+
+/* 13. RESPONSIVE MEDIA QUERIES
+----------------------------- */
+
+/* Tablets and small desktops */
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 3rem;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .grid-2-cols {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
+    .grid-3-cols {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 2fr 1fr 2fr;
+    }
+
+    .navbar-toggle {
+        display: none;
+    }
+
+    .navbar-menu {
+        display: block;
+        position: static;
+        height: auto;
+        width: auto;
+        background: transparent;
+    }
+
+    .navbar-menu .navbar-list {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .navbar-btn {
+        display: inline-block;
+        margin-left: 1rem;
+    }
+}
+
+/* Large desktops */
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 4.5rem;
+    }
+    .about-preview-content {
+        padding-left: 2rem;
+    }
+}
+
+/* 14. ABOUT PAGE STYLES
+----------------------------- */
+.page-header {
+    padding: 6rem 0;
+    position: relative;
+    text-align: center;
+    color: var(--white-color);
+    background: url('../images/11.jpg') no-repeat center center/cover;
+    margin-top: 70px; /* Adjust based on your final header height */
+}
+
+.page-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 17, 23, 0.7); /* blue-black overlay */
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-header-title {
+    font-size: 3rem;
+    color: var(--white-color);
+}
+
+.page-header-subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    font-weight: 400;
+}
+
+.about-history-image img {
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.lead {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--medium-dark-color);
+    margin-bottom: 1rem;
+}
+
+.counter-section .grid-3-cols {
+    gap: 1rem;
+}
+
+.counter-item i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.counter-item h3.counter {
+    font-size: 3rem;
+    color: var(--dark-color);
+    margin-bottom: 0.25rem;
+}
+
+.counter-item p {
+    font-family: var(--font-family-body);
+    color: var(--medium-dark-color);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background: var(--white-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+}
+
+.team-card-img img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.team-card-content {
+    padding: 1.5rem;
+}
+
+.team-card-content h3 {
+    margin-bottom: 0.25rem;
+}
+
+.team-card-content p {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.certifications-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.cert-logo {
+    max-height: 60px;
+}
+
+.cert-logo img {
+    height: 100%;
+    max-height: 60px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+.cert-logo img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Add responsive styles for the page header inside the existing media queries */
+
+/* 15. SERVICES PAGE STYLES
+----------------------------- */
+.service-section {
+    padding: 5rem 0;
+}
+
+/* Logic for alternating layout */
+.service-section:nth-child(even) .grid-2-cols {
+    direction: rtl; /* Reverses the order of grid items */
+}
+
+.service-section:nth-child(even) .grid-2-cols > * {
+    direction: ltr; /* Resets text direction for content inside */
+}
+
+.service-image img {
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-content {
+    padding: 0 2rem;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.service-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.service-content p {
+    margin-bottom: 1.5rem;
+}
+
+.service-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-content ul li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.service-content ul li i {
+    color: var(--secondary-color);
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+}
+
+/* Parallax Section */
+.parallax-section {
+    padding: 8rem 0;
+    position: relative;
+    background-image: url('../images/19.jpg');
+    /* This creates the parallax effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--white-color);
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 17, 23, 0.6); /* blue-black overlay */
+}
+
+.parallax-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.parallax-section h2 {
+    font-size: 2.5rem;
+    color: var(--white-color);
+    font-weight: 700;
+}
+
+/* Add responsive adjustments inside your media queries */
+/* 16. PROJECTS PAGE STYLES
+----------------------------- */
+.filter-controls {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--light-color);
+    color: var(--medium-dark-color);
+    padding: 0.5rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+}
+
+.filter-btn:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--white-color);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.project-item.hide {
+    transform: scale(0.8);
+    opacity: 0;
+    /* This makes the hidden items not take up space, allowing grid to reflow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.project-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-item:hover img {
+    transform: scale(1.1);
+}
+
+.project-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(99, 102, 241, 0.8); /* Indigo overlay */
+    color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.project-item:hover .project-item-overlay {
+    opacity: 1;
+}
+
+.project-item-overlay i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-item-overlay h4 {
+    color: var(--white-color);
+    font-size: 1.2rem;
+}
+
+/* 17. CONTACT PAGE STYLES
+----------------------------- */
+.contact-section .align-start {
+    align-items: flex-start;
+}
+
+.contact-form-wrapper,
+.contact-info-wrapper {
+    width: 100%;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--medium-dark-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--font-family-body);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed) ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.contact-details-list {
+    list-style: none;
+    margin-top: -1rem; /* Align with form visually */
+}
+
+.contact-details-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.contact-details-list i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 1.5rem;
+    margin-top: 0.25rem;
+    width: 25px;
+    text-align: center;
+}
+
+.contact-details-list strong {
+    display: block;
+    font-family: var(--font-family-heading);
+    color: var(--dark-color);
+    margin-bottom: 0.25rem;
+}
+
+.contact-details-list p {
+    margin: 0;
+}
+
+.contact-info-subheader {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* FAQ Section */
+.faq-accordion {
+    border-top: 1px solid #ddd;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+}
+
+.faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 1.5rem 0;
+    font-family: var(--font-family-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question i {
+    transition: transform var(--transition-speed) ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.faq-answer p {
+    padding-bottom: 1.5rem;
+    margin: 0;
+}
+
